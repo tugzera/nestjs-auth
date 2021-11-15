@@ -24,4 +24,8 @@ export class UsersService {
     });
     return this.userRepository.save(user);
   }
+
+  async findByEmail(email: string): Promise<UserEntity> {
+    return this.userRepository.findOne({ email });
+  }
 }
