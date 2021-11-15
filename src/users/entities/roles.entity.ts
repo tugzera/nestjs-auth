@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { RoleFunctionalityEntity } from './role-functionalities-entity';
+import { RoleFunctionalityEntity } from './role-functionalities.entity';
 
 @Index('pk_roles', ['id'], { unique: true })
 @Entity('roles', { schema: 'public' })

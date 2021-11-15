@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,10 +15,11 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [`${__dirname}/../**/*.entity.{js,ts}`],
-      synchronize: true,
+      logging: true,
+      entities: [`${__dirname}/**/*.entity.{ts,js}`],
     }),
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}

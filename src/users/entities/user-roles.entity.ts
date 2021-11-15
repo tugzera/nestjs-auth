@@ -6,20 +6,19 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { UserEntity } from './users.entity';
 
-import { RoleEntity } from './roles-entity';
-
-@Index('pk_rolefunctionalities', ['id'], { unique: true })
-@Entity('rolefunctionalities', { schema: 'public' })
-export class RoleFunctionalityEntity {
+@Index('pk_userroles', ['id'], { unique: true })
+@Entity('userroles', { schema: 'public' })
+export class UserRoleEntity {
   @Column('uuid', { primary: true, name: 'id' })
   id: string;
 
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'alternativeid' })
-  alternativeid: string;
+  @PrimaryGeneratedColumn({ type: 'bigint', name: 'alternative_id' })
+  alternativeId: string;
 
-  @Column('uuid', { name: 'functionality_id' })
-  functionalityId: string;
+  @Column('uuid', { name: 'role_id' })
+  roleId: string;
 
   @Column('timestamp with time zone', { name: 'createddate' })
   createddate: Date;
@@ -30,10 +29,10 @@ export class RoleFunctionalityEntity {
   @Column('timestamp with time zone', { name: 'deleteddate', nullable: true })
   deleteddate: Date | null;
 
-  @ManyToOne(() => RoleEntity, (roles) => roles.roleFunctionalities, {
+  @ManyToOne(() => UserEntity, (users) => users.userRoles, {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT',
   })
-  @JoinColumn([{ name: 'role_id', referencedColumnName: 'id' }])
-  role: RoleEntity;
+  @JoinColumn([{ name: 'user_id', referencedColumnName: 'id' }])
+  user: UserEntity;
 }

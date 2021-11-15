@@ -1,22 +1,11 @@
-import {
-  Column,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
+import { BaseEntity } from '../../common/entity/base-entity';
 
-import { UserRoleEntity } from './user-roles-entity';
+import { UserRoleEntity } from './user-roles.entity';
 
 @Index('pk_users', ['id'], { unique: true })
 @Entity('users', { schema: 'public' })
-export class UserEntity {
-  @Column('uuid', { primary: true, name: 'id' })
-  id: string;
-
-  @PrimaryGeneratedColumn({ type: 'bigint', name: 'alternative_id' })
-  alternativeId: string;
-
+export class UserEntity extends BaseEntity {
   @Column('character varying', { name: 'name', length: 400 })
   name: string;
 
@@ -32,10 +21,14 @@ export class UserEntity {
   })
   adminBlockedDate: Date | null;
 
-  @Column('character varying', { name: 'pasword_hash', length: 100 })
-  paswordHash: string;
+  @Column('character varying', { name: 'password_hash', length: 100 })
+  passwordHash: string;
 
-  @Column('character varying', { name: 'last_login_ip', length: 15 })
+  @Column('character varying', {
+    name: 'last_login_ip',
+    length: 15,
+    nullable: true,
+  })
   lastLoginIp: string;
 
   @Column('character varying', {
@@ -51,15 +44,6 @@ export class UserEntity {
     length: 500,
   })
   currentRefreshToken: string | null;
-
-  @Column('timestamp with time zone', { name: 'createddate' })
-  createddate: Date;
-
-  @Column('timestamp with time zone', { name: 'updateddate', nullable: true })
-  updateddate: Date | null;
-
-  @Column('timestamp with time zone', { name: 'deleteddate', nullable: true })
-  deleteddate: Date | null;
 
   @OneToMany(() => UserRoleEntity, (userRoles) => userRoles.user)
   userRoles: UserRoleEntity[];
