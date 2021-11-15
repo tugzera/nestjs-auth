@@ -4,6 +4,7 @@
 
 # lock
 package-lock.json
+yarn.lock
 
 # entites output
 /output
