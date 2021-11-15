@@ -5,6 +5,9 @@
 # lock
 package-lock.json
 
+# entites output
+/output
+
 # Logs
 logs
 *.log

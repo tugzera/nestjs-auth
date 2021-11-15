@@ -13,7 +13,7 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [],
+      entities: [`${__dirname}/../**/*.entity.{js,ts}`],
       synchronize: true,
     }),
     AuthModule,

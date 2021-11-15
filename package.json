@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm:model:generate": "typeorm-model-generator -h localhost -d postgres -p 5432 -u postgres -x postgres -e postgres"
   },
   "dependencies": {
     "@casl/ability": "^5.4.3",
